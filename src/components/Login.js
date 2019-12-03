@@ -23,6 +23,35 @@ var center={
     height:"350px"
 }
 class Page extends Component{
+    state={
+        username:'',
+        password:''
+    }
+    changeHandler=e=>{
+        this.setState(
+            {
+                [e.target.id]:e.target.value
+            }
+        )
+    }
+    submitHandler=e=>{
+        e.preventDefault();
+        if(this.state.username=='lpu')
+        {
+            if(this.state.password=='student')
+            {
+                this.props.history.push('/page1');
+            }
+            else
+            {
+                alert("wrong password");
+            }
+        }
+        else
+        {
+            alert('wrong username');
+        }
+    }
     render()
     {
         return(
@@ -34,18 +63,20 @@ class Page extends Component{
             <div className="card valign-wrapper center-align" style={center}>
                 <div className="card-content" style={cent}>
                 <span class="card-title"><b><h1>Login</h1></b></span>
+                <form action="" onSubmit={this.submitHandler}>
                     <div className="row">
                         <br/>
                         <br/>
-                   Username : <input type="text col s3"/>
+                   Username : <input type="text col s3" onChange={this.changeHandler} id="username"/>
                    <br/>
                    <br/>
-                   Password : <input type="password col s3"/>
+                   Password : <input type="password col s3" onChange={this.changeHandler} id="password"/>
                         </div>
-                    <div className="btn-floating btn-large waves-effect waves-light red">Login</div>
+                    <button className="btn-floating btn-large waves-effect waves-light red" type="submit">Login</button>
                     <br/>
                     <br/>
                     <br/>
+                    </form>
                   </div>
                   </div>
                   </div>
